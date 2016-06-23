@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Toaster | Jacquelyn Zen</title>
+	<link rel="stylesheet" type="text/css" href="toaster.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+	<link rel="icon" type="image/ico" href="images/favicon.ico" />
+
+</head>
+
+<body>
+
+
+
+	<div id="toaster">
+		<h1>Toaster</h1>
+		<h2>by Jacquelyn Zen</h2>
+
+
+
+
+
+		<div id="toaster-body" class="drag">
+
+			<div class="blinker"></div>
+			<div class="blinker-on"></div>
+			<div id="shine"></div>
+
+
+			<div id="toaster-buttons"></div>
+			<div id="toaster-stand"></div>
+
+		</div>
+		<div id="handle-container">
+			<div id="handle">
+
+				<div id="bread"></div>
+
+			</div>
+
+			<div id="droppable"></div>
+
+		</div>
+
+		<div id="shadow"></div>
+
+
+
+	</div>
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+<script>
+	$(document).ready(function () {
+		//			$("#handle").draggable({
+		//				containment: "parent"
+		//	
+		//			});
+
+		$("#handle").draggable({
+			containment: "parent",
+			drag: function (event, ui) {
+
+				// Remove .dropClass if it exists (if #draggable has already been dropped)
+				$(this).removeClass('blinker');
+			}
+		});
+
+		$("#droppable").droppable({
+			// tolerance can be set to 'fit', 'intersect', 'pointer', or 'touch'
+			tolerance: 'intersect',
+			// Add .hoverClass whenever #draggable is being hovered over #droppable
+			over: function (event, ui) {
+				$('.blinker').addClass('blinker-on');
+			},
+			// Remove .hoverClass whenever #draggable is no longer hovered over #droppable
+			out: function (event, ui) {
+				$('.blinker').removeClass('blinker-on');
+			},
+			// Add .dropClass whenever #draggable is dropped on #droppable
+			drop: function (event, ui) {
+				$('.blinker').addClass('blinker-on');
+			}
+		});
+
+
+
+	});
+</script>
+
+
+</html>
